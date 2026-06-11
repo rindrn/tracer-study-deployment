@@ -21,8 +21,7 @@ const Login = () => {
     try {
       await login(email, password);
       navigate("/dashboard/overview");
-    } catch {
-    }
+    } catch {}
   };
   // const handleSubmit = async (e: React.FormEvent) => {
   //   e.preventDefault();
@@ -40,8 +39,8 @@ const Login = () => {
           className="w-full max-w-md"
         >
           {/* Back Link */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -49,11 +48,18 @@ const Login = () => {
           </Link>
 
           {/* Logo */}
-          <PolbanLogo className="mb-8" markClassName="h-12 w-12" title="Tracer Study" subtitle="POLBAN" />
+          <PolbanLogo
+            className="mb-8"
+            markClassName="h-12 w-12"
+            title="Tracer Study"
+            subtitle="POLBAN"
+          />
 
           {/* Header */}
           <div className="mb-8">
-            <h1 className="font-heading text-3xl font-bold mb-2">Selamat Datang</h1>
+            <h1 className="font-heading text-3xl font-bold mb-2">
+              Selamat Datang 👋
+            </h1>
             <p className="text-muted-foreground">
               Masuk ke dashboard untuk mengakses analitik tracer study
             </p>
@@ -96,13 +102,17 @@ const Login = () => {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  {showPassword ? (
+                    <EyeOff className="w-5 h-5" />
+                  ) : (
+                    <Eye className="w-5 h-5" />
+                  )}
                 </button>
               </div>
             </div>
 
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="btn-primary w-full h-12 text-base"
               disabled={isLoading}
             >
@@ -130,7 +140,7 @@ const Login = () => {
       <div className="hidden lg:flex w-1/2 relative overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-cyan-accent/20" />
-        
+
         {/* Decorative Elements */}
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/30 rounded-full blur-3xl animate-pulse-slow" />
         <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-cyan-accent/30 rounded-full blur-3xl animate-pulse-slow animation-delay-300" />
@@ -147,8 +157,8 @@ const Login = () => {
               Dashboard <span className="gradient-text">Analitik</span>
             </h2>
             <p className="text-muted-foreground max-w-md mx-auto mb-8">
-              Akses data tracer study secara real-time dengan visualisasi interaktif
-              dan analisis clustering untuk penjaminan mutu
+              Akses data tracer study secara real-time dengan visualisasi
+              interaktif dan analisis clustering untuk penjaminan mutu
             </p>
 
             {/* Feature Cards */}
@@ -167,7 +177,9 @@ const Login = () => {
                   className="glass-card p-4 text-left"
                 >
                   <div className="font-semibold text-sm">{item.title}</div>
-                  <div className="text-xs text-muted-foreground">{item.desc}</div>
+                  <div className="text-xs text-muted-foreground">
+                    {item.desc}
+                  </div>
                 </motion.div>
               ))}
             </div>
