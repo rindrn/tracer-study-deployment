@@ -58,7 +58,7 @@ const Login = () => {
           {/* Header */}
           <div className="mb-8">
             <h1 className="font-heading text-3xl font-bold mb-2">
-              Selamat Datang di Tracer Study Polban
+              Selamat Datang
             </h1>
             <p className="text-muted-foreground">
               Masuk ke dashboard untuk mengakses analitik tracer study
