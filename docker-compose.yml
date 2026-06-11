@@ -1,50 +1,111 @@
+
 version: "3.9"
 
 services:
+
   postgres:
+
     image: postgres:16
+
     container_name: tracer-postgres
+
     restart: always
+
     environment:
-      POSTGRES_DB: tracer_study
+
+      POSTGRES_DB: tracer_oltp
+
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+
+      POSTGRES_PASSWORD: Rin_2722
+
     ports:
+
       - "5432:5432"
+
     volumes:
+
       - postgres_data:/var/lib/postgresql/data
 
   backend:
+
     build:
+
       context: ./backend
+
     container_name: tracer-backend
+
     restart: always
+
     depends_on:
+
       - postgres
+
     ports:
+
       - "8000:8000"
+
     env_file:
+
       - .env.production
 
+    environment:
+
+      APP_KEY: base64:bz1BwlSAPZ73D0VH2n8hoe8v66TZKxn+OiEu866br7I=
+
+      OLTP_DB_HOST: postgres
+
+      OLTP_DB_DATABASE: tracer_oltp
+
+      OLAP_DB_HOST: postgres
+
+      OLAP_DB_DATABASE: tracer_oltp
+
   frontend:
+
     build:
+
       context: ./frontend
+
+      args:
+
+        VITE_API_URL: http://34.101.165.105:8000/api
+
     container_name: tracer-frontend
+
     restart: always
+
     depends_on:
+
       - backend
+
     ports:
+
       - "80:80"
 
   cube:
+
     build:
+
       context: ./cube/tracer-analytics
+
     container_name: tracer-cube
+
+    env_file:
+
+      - .env.production
+
     restart: always
+
     depends_on:
+
       - postgres
+
     ports:
+
       - "4000:4000"
 
 volumes:
+
   postgres_data:
+
